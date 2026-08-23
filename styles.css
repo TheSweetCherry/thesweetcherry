@@ -337,3 +337,62 @@ html.custom-cursor,html.custom-cursor *{cursor:none!important}
   padding:14px !important;
   box-shadow:5px 5px 0 #ff8ec8 !important;
 }
+
+/* ===== V6 visibility fixes ===== */
+.home-side-v6{
+  display:block !important;
+  visibility:visible !important;
+  width:auto !important;
+}
+.home-side-v6 .panel{
+  display:block !important;
+  visibility:visible !important;
+}
+.home-side-v6 .cd-case,
+.home-side-v6 .crush-phone-wrap{
+  display:block !important;
+  visibility:visible !important;
+}
+.photo-wrap > section{
+  display:block !important;
+  visibility:visible !important;
+}
+.cherrybook{
+  display:block !important;
+  visibility:visible !important;
+  position:relative !important;
+  width:min(760px,100%) !important;
+  margin:0 auto 16px !important;
+  min-height:520px;
+}
+.laptop-shell{
+  display:block !important;
+  visibility:visible !important;
+  width:100% !important;
+  height:auto !important;
+  object-fit:contain !important;
+  position:relative !important;
+  z-index:1 !important;
+}
+.cherrybook .video-screen{
+  display:block !important;
+  visibility:visible !important;
+  position:absolute !important;
+  left:22.8% !important;
+  top:21.3% !important;
+  width:55.3% !important;
+  height:35.8% !important;
+  z-index:3 !important;
+  overflow:hidden !important;
+  background:#e681ba !important;
+}
+.cherrybook .video-screen video{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+@media(max-width:900px){
+  .home-side-v6{order:3}
+  .cherrybook{min-height:360px}
+}

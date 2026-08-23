@@ -49,3 +49,9 @@ V5 UPDATE
   14. ICE CREAM CONE
   15. HOT AIR BALLOON
 - Each successful stage adds +10 seconds, capped at 60 seconds.
+
+V6 UPDATE
+- Restored and forced the homepage right-side music CD + Spotify panel.
+- Restored and forced the Crush of the Month phone with Tom Holland inside the screen.
+- Restored and forced the Y2K laptop to display on the Photobooth page.
+- Camera feed remains inside the laptop screen.
