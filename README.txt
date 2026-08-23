@@ -28,3 +28,24 @@ V4 UPDATE
 - Crush of the Month uses the exact latest transparent phone PNG.
 - Tom Holland remains inside the phone's screen and still shimmers when clicked.
 - The leopard CD + Spotify music panel remain on the right side of the homepage.
+
+V5 UPDATE
+- Fixed the Paint drawing-game prompt so it always shows clearly.
+- Drawing game is no longer random.
+- Stage sequence now begins:
+  1. CAT
+  2. CLOCK
+  3. CHERRY
+  4. HOUSE
+  5. DOG
+  6. FLOWER
+  7. FISH
+  8. CAMERA
+  9. BUTTERFLY
+  10. GUITAR
+  11. CASTLE
+  12. ROLLER SKATE
+  13. TELEPHONE
+  14. ICE CREAM CONE
+  15. HOT AIR BALLOON
+- Each successful stage adds +10 seconds, capped at 60 seconds.

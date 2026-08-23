@@ -321,3 +321,19 @@ html.custom-cursor,html.custom-cursor *{cursor:none!important}
 .home-grid > aside:last-child .panel{
   display:block !important;
 }
+
+/* ===== V5 DRAWING GAME PROMPT FIX ===== */
+.game-prompt{
+  display:block !important;
+  visibility:visible !important;
+  min-height:78px !important;
+  font-size:42px !important;
+  line-height:1.15 !important;
+  text-align:center !important;
+  font-weight:900 !important;
+  color:#fff !important;
+  background:#b8197b !important;
+  border:4px solid #571040 !important;
+  padding:14px !important;
+  box-shadow:5px 5px 0 #ff8ec8 !important;
+}
