@@ -172,3 +172,94 @@ html.custom-cursor,html.custom-cursor *{cursor:none!important}
  .thumbrail{grid-template-columns:repeat(3,1fr)}
  .thumb{height:100px}
 }
+
+/* ===== V3 PATCHES ===== */
+.cursor-custom{
+  width:44px;height:44px;
+  background:url('assets/images/leopard-cursor-clean.png') center/contain no-repeat !important;
+}
+.browser-content{
+  background:#fff;
+  border:12px solid transparent;
+  border-image:url('assets/images/polka-frame.jpg') 55 round;
+}
+.desktop{display:none!important}
+.popup{display:none!important}
+
+.cd-case{position:relative;width:170px;height:170px;margin:12px auto}
+.cd-case::before{
+  content:"";position:absolute;inset:0;
+  background:url('assets/images/leopard-cd.jpg') center/contain no-repeat;
+}
+.cd-spin{
+  position:absolute;left:50%;top:50%;width:116px;height:116px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;overflow:hidden;
+  background:url('assets/images/leopard-disc-only.png') center/cover no-repeat;
+  animation:spinDisc 6s linear infinite;
+}
+@keyframes spinDisc{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+.crush-phone-wrap{position:relative;width:210px;max-width:95%;margin:10px auto}
+.crush-phone-wrap>img{width:100%;display:block}
+.crush-photo{
+  position:absolute;left:25%;top:15%;width:50%;height:40%;
+  background:linear-gradient(#ffd8ea,#f1b6d4);
+  display:grid;place-items:center;overflow:hidden;border:1px solid #b36c95;
+}
+.crush-photo .placeholder{font-weight:900;color:#9b1c72;text-align:center;padding:6px;font-size:13px}
+
+.game-prompt{
+  font-size:42px !important;
+  color:#fff !important;
+  background:#b8197b;
+  border:4px solid #571040;
+  padding:14px;
+  margin:12px 0 16px !important;
+  box-shadow:5px 5px 0 #ff8ec8;
+  text-transform:uppercase;
+}
+.prompt-helper{text-align:center;font-size:15px;font-weight:900;color:#781557;margin-bottom:7px}
+.phone-timer{min-height:390px}
+.timer-phone{width:250px!important;max-width:100%!important}
+.timer-display{
+  top:22% !important;
+  font-size:44px !important;
+  background:rgba(255,255,255,.82);
+  border:2px solid #222;
+  padding:4px 9px;
+  min-width:135px;
+}
+
+/* ===== Crush of the Month: Tom Holland ===== */
+.crush-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.crush-photo{
+  cursor:pointer;
+  transition:transform .2s ease, filter .2s ease;
+}
+.crush-photo:hover{
+  transform:scale(1.025);
+  filter:brightness(1.05);
+}
+.crush-photo.shimmering::after{
+  content:"✦  ✧  ✦";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:34px;
+  color:#fff;
+  text-shadow:0 0 7px #ff2fa1, 0 0 12px #fff;
+  animation:crushShimmer .8s ease-out forwards;
+  pointer-events:none;
+}
+@keyframes crushShimmer{
+  0%{opacity:0;transform:scale(.65) rotate(-10deg)}
+  35%{opacity:1}
+  100%{opacity:0;transform:scale(1.28) rotate(10deg)}
+}

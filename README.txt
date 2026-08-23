@@ -1,24 +1,23 @@
-THESWEETCHERRY WEBSITE V2
+THESWEETCHERRY WEBSITE V3
 
-This is the first major visual redesign based on the latest notes.
+Latest fixes:
+- separate cropped coloring images (no neighboring artwork showing)
+- drawing game prompt is now BIG and explicit: DRAW A DOG!, DRAW A CLOCK!, etc.
+- cleaned rhinestone Blackberry timer asset
+- cleaned photobooth laptop asset
+- transparent leopard cursor
+- cleaned crush-of-the-month phone with a ready photo window
+- CD case stays still while only the inner disc spins
+- removed the quiz/paint/photo icon strip and main-character reminder popup
+- Pink Chaos/browser area uses the black/white polka-dot frame
+- Spotify playlist remains embedded
 
-Updated:
-- Bite Me-inspired title styling for thesweetcherry
-- pink sequin homepage background + leopard accents
-- leopard custom mouse + sparkle trail
-- CherryChat recolored with leopard/warm pink
-- animated Daily Cherry asset + sparkle sticker
-- rotating leopard CD + placeholder for future Spotify playlist
-- new pink flip-phone visual panel
-- Quiz: pink glitter background + 10 questions
-- Paint: new background, exact uploaded coloring line-art, separate popup game, phone timer, prompts, buzzer/shimmer
-- Photobooth: Y2K laptop shell, webcam inside screen, 4-shot flow, classic/phone/computer outputs, multiple strip styles
+Tom Holland:
+The phone is ready, but V3 uses a placeholder rather than embedding an unlicensed web portrait.
+Upload the exact picture you want used and it can be placed there.
 
-Spotify:
-Send the exact Spotify playlist link and it can be embedded in the next update.
-
-To update GitHub:
-Upload all files in this folder to the root of the existing repository and replace the old versions, then commit.
+Upload all V3 contents to the root of the existing GitHub repository and commit.
 GitHub Pages will redeploy automatically.
 
-Spotify playlist embedded: 78RdmtqMBcRpXrgFUUf9IB
+- Crush of the Month now uses the uploaded Tom Holland image inside the phone screen.
+- Clicking the phone image triggers a shimmer/sparkle effect.
