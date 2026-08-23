@@ -15,22 +15,10 @@
 </main>
 <aside>
 <section class="panel"><div class="panel-title">currently playing</div><div class="cd-case"><div class="cd-spin"></div></div><div class="notes"><span>♪</span><span>♫</span><span>♪</span></div><div style="text-align:center;font-weight:900;color:#a51a78;padding:0 9px 8px">TheSweetCherry playlist ♡</div><div style="padding:0 10px 12px"><iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/78RdmtqMBcRpXrgFUUf9IB?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div></section>
-<section class="panel" style="margin-top:10px"><div class="panel-title">crush of the month ♡</div><div class="crush-phone-wrap"><img src="assets/images/crush-phone-clean-crop.png"><div class="crush-photo" id="crushPhoto"><img src="assets/images/crush-tom-holland.jpg" alt="Tom Holland"></div></div><div class="month-pick">Tom Holland ♡</div></section>
+<section class="panel" style="margin-top:10px"><div class="panel-title">crush of the month ♡</div><div class="crush-phone-wrap"><img src="assets/images/crush-phone-clean-crop.png"><div class="crush-photo"><div class="placeholder">TOM HOLLAND<br>♡ crush of the month ♡<br><span class="small">upload a photo to place here</span></div></div></div><div class="month-pick">Tom Holland ♡</div></section>
 </aside></div><div class="footer">best viewed with glitter, leopard print & absolutely no minimalism ✦</div></div>
 <script src="common.js"></script><script>
 const fortunes=["good things are making their way to you ✦","your next favorite memory hasn't happened yet ♡","you are entering a very cute chapter","today is a little-treat day","something confusing will make sense soon","say yes to something unexpected","your outfit is going to eat today"];
 dailyCherry.onclick=()=>{const d=new Date();const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();let s=JSON.parse(localStorage.getItem('dailyCherry')||'null');if(!s||s.k!==k){let n=0;for(const ch of k)n+=ch.charCodeAt(0);s={k,m:fortunes[n%fortunes.length]};localStorage.setItem('dailyCherry',JSON.stringify(s))}dailyMsg.textContent=s.m;sweetTone(980,.1,'triangle',.025)};
 let m=JSON.parse(localStorage.getItem('sweetLocalMsgs')||'[]');m.forEach(a=>add(a.nick,a.text));function add(n,t){let d=document.createElement('div');d.className='msg mine';d.innerHTML='<div class="who"></div>';d.querySelector('.who').textContent=n||'anonymous';d.append(document.createTextNode(t));messages.appendChild(d)}send.onclick=()=>{let t=comment.value.trim();if(!t)return;let a={nick:nick.value.trim()||'anonymous',text:t.slice(0,180)};m.push(a);localStorage.setItem('sweetLocalMsgs',JSON.stringify(m.slice(-20)));add(a.nick,a.text);comment.value='';messages.scrollTop=messages.scrollHeight};
-
-const crushPhoto=document.getElementById('crushPhoto');
-if(crushPhoto){
-  crushPhoto.addEventListener('click',()=>{
-    crushPhoto.classList.remove('shimmering');
-    void crushPhoto.offsetWidth;
-    crushPhoto.classList.add('shimmering');
-    sweetTone(1180,.10,'triangle',.025);
-    setTimeout(()=>crushPhoto.classList.remove('shimmering'),900);
-  });
-}
-
 </script></body></html>
