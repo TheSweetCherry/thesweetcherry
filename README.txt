@@ -18,3 +18,6 @@ Upload the exact picture you want used and it can be placed there.
 
 Upload all V3 contents to the root of the existing GitHub repository and commit.
 GitHub Pages will redeploy automatically.
+
+- Crush of the Month now uses the uploaded Tom Holland image inside the phone screen.
+- Clicking the phone image triggers a shimmer/sparkle effect.
