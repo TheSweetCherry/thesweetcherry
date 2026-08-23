@@ -21,3 +21,10 @@ GitHub Pages will redeploy automatically.
 
 - Crush of the Month now uses the uploaded Tom Holland image inside the phone screen.
 - Clicking the phone image triggers a shimmer/sparkle effect.
+
+V4 UPDATE
+- Photobooth uses the exact latest transparent laptop PNG.
+- Webcam feed is positioned inside the laptop screen.
+- Crush of the Month uses the exact latest transparent phone PNG.
+- Tom Holland remains inside the phone's screen and still shimmers when clicked.
+- The leopard CD + Spotify music panel remain on the right side of the homepage.

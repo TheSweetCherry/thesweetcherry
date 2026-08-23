@@ -263,3 +263,61 @@ html.custom-cursor,html.custom-cursor *{cursor:none!important}
   35%{opacity:1}
   100%{opacity:0;transform:scale(1.28) rotate(10deg)}
 }
+
+/* ===== V4 exact laptop + phone ===== */
+.laptop-shell{
+  content:url('assets/images/cherrybook-shell-v4.png') !important;
+  width:100% !important;
+  height:auto !important;
+  display:block !important;
+}
+.cherrybook .video-screen{
+  left:22.8% !important;
+  top:21.3% !important;
+  width:55.3% !important;
+  height:35.8% !important;
+  border:0 !important;
+  background:#e681ba !important;
+  overflow:hidden !important;
+}
+.cherrybook .video-screen video{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+.crush-phone-wrap{
+  width:235px !important;
+  max-width:96% !important;
+  margin:10px auto 12px !important;
+  position:relative !important;
+}
+.crush-phone-wrap > img{
+  content:url('assets/images/crush-phone-v4.png') !important;
+  width:100% !important;
+  height:auto !important;
+  display:block !important;
+}
+.crush-photo{
+  position:absolute !important;
+  left:24.2% !important;
+  top:12.4% !important;
+  width:52.7% !important;
+  height:39.4% !important;
+  overflow:hidden !important;
+  border-radius:4px !important;
+  background:#f6c4de !important;
+  border:0 !important;
+  z-index:2;
+}
+.crush-photo img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center 35% !important;
+  display:block !important;
+}
+/* keep the right-side music + phone panels */
+.home-grid > aside:last-child,
+.home-grid > aside:last-child .panel{
+  display:block !important;
+}
