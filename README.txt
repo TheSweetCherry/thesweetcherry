@@ -1,32 +1,24 @@
-THESWEETCHERRY — WEBSITE V1
+THESWEETCHERRY WEBSITE V2
 
-UPLOAD TO GITHUB
-1. Extract this ZIP.
-2. On GitHub's 'Drag files here' page, upload the CONTENTS of this folder:
-   index.html
-   quiz.html
-   paint.html
-   photobooth.html
-   styles.css
-   common.js
-   README.txt
-   assets folder
-3. Commit the upload.
-4. Then enable GitHub Pages from Settings > Pages.
+This is the first major visual redesign based on the latest notes.
 
-CURRENT FEATURES
-- Y2K portal homepage
-- pink sparkle cursor
-- optional UI click sounds
-- Daily Cherry
-- local-only CherryChat prototype
-- 8-question personality quiz
-- retro Paint + timed drawing challenge + PNG download
-- cherryBook photobooth prototype with webcam, four shots, frames, doodling and PNG download
+Updated:
+- Bite Me-inspired title styling for thesweetcherry
+- pink sequin homepage background + leopard accents
+- leopard custom mouse + sparkle trail
+- CherryChat recolored with leopard/warm pink
+- animated Daily Cherry asset + sparkle sticker
+- rotating leopard CD + placeholder for future Spotify playlist
+- new pink flip-phone visual panel
+- Quiz: pink glitter background + 10 questions
+- Paint: new background, exact uploaded coloring line-art, separate popup game, phone timer, prompts, buzzer/shimmer
+- Photobooth: Y2K laptop shell, webcam inside screen, 4-shot flow, classic/phone/computer outputs, multiple strip styles
 
-NEXT DESIGN PASS
-- redraw cherryBook shell to match the chosen Y2K laptop direction
-- print choices: cheetah, hot-pink sparkle, white, cherry, retro
-- add cherryMobile / Y2K phone output
-- add old-computer contact-sheet output
-- replace CSS placeholders with your final custom artwork/GIFs
+Spotify:
+Send the exact Spotify playlist link and it can be embedded in the next update.
+
+To update GitHub:
+Upload all files in this folder to the root of the existing repository and replace the old versions, then commit.
+GitHub Pages will redeploy automatically.
+
+Spotify playlist embedded: 78RdmtqMBcRpXrgFUUf9IB

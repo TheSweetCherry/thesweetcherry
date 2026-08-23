@@ -1,29 +1,19 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quiz - thesweetcherry</title><link rel="stylesheet" href="styles.css"></head>
-<body class="quiz-bg subpage">
-<nav class="topnav"><a href="index.html">home</a><a href="quiz.html">quiz</a><a href="paint.html">paint</a><a href="photobooth.html">photobooth</a><button class="sound-toggle" onclick="toggleSweetSound()">🔊 sound on</button></nav>
-<h1 class="sub-title">which 2000s character are you?</h1>
-<section class="quiz-shell"><div class="quiz-inner">
-<div id="start"><div class="small">PERSONALITY QUIZ</div><h2 style="font-size:37px;margin:8px 0">Who is your 2000s icon?</h2><p>Pick the answers that feel the most like you.</p><input id="qname" placeholder="your name" style="padding:10px;width:min(310px,90%);margin:8px 0 16px"><br><button class="btn primary" onclick="begin()">Start Quiz »</button></div>
-<div id="play" class="hidden"><div class="progress"><div id="bar" style="width:0"></div></div><div class="small" id="count"></div><div class="qtext" id="qtext"></div><div class="qopts" id="opts"></div></div>
-<div id="done" class="hidden"><div class="small">YOUR 2000s CHARACTER IS...</div><div class="result"><h2 id="rname"></h2><p id="rdesc"></p><button class="btn" onclick="restart()">take it again</button></div></div>
-</div></section>
-<script src="common.js"></script>
-<script>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Let's Quiz! - thesweetcherry</title><link rel="stylesheet" href="styles.css"></head><body class="quiz-bg">
+<nav class="topnav"><a href="index.html">home</a><a href="quiz.html">let's quiz!</a><a href="paint.html">paint</a><a href="photobooth.html">photobooth</a><button class="sound-toggle" onclick="toggleSweetSound()">🔊 sound on</button></nav>
+<h1 class="sub-title">Let's Quiz!</h1><section class="quiz-shell"><div class="quiz-inner"><div id="start"><div class="y2k-label">personality quiz</div><h2 style="font-size:38px">which 2000s character are you?</h2><p>Pick what feels the most like you. No overthinking.</p><input id="qname" placeholder="your name" style="padding:10px;width:min(320px,90%);margin:8px 0 16px"><br><button class="btn primary" onclick="begin()">START QUIZ »</button></div><div id="play" class="hidden"><div class="progress"><div id="bar"></div></div><div class="small" id="count"></div><div class="qtext" id="qtext"></div><div class="qopts" id="opts"></div></div><div id="done" class="hidden"><div class="y2k-label">OMG YOU GOT...</div><div class="result"><h2 id="rname"></h2><p id="rdesc"></p><button class="btn" onclick="restart()">♡ retake quiz ♡</button></div></div></div></section>
+<script src="common.js"></script><script>
 const Q=[
-["Your perfect Friday night?",["Getting dressed up and going somewhere iconic","elle"],["A cozy night with your favorite people","rory"],["Something chaotic that becomes a story","london"],["Music, snacks, and a spontaneous plan","lizzie"]],
+["Your perfect Friday night?",["Going somewhere iconic","elle"],["Cozy night + favorite people","rory"],["Something chaotic that becomes a story","london"],["Snacks + spontaneous plan","lizzie"]],
 ["Pick your biggest strength.",["I know what I want","elle"],["I notice everything","rory"],["I make anything entertaining","london"],["I figure it out as I go","lizzie"]],
-["Someone underestimates you. What now?",["Prove them wrong with style","elle"],["Quietly become better than expected","rory"],["Laugh, then somehow still win","london"],["Panic for five minutes, then solve it","lizzie"]],
-["Your room probably has...",["A very intentional aesthetic","elle"],["Books, notes, little keepsakes","rory"],["Something unnecessary but fabulous","london"],["Photos, doodles, random memories","lizzie"]],
-["Choose a 2000s accessory.",["Tiny bag","elle"],["Notebook","rory"],["Oversized sunglasses","london"],["Butterfly clips","lizzie"]],
-["Your friends call you when they need...",["Confidence","elle"],["Advice","rory"],["Entertainment","london"],["Someone who gets it","lizzie"]],
-["Pick a vibe.",["Pink, polished, ambitious","elle"],["Cozy, thoughtful, curious","rory"],["Loud, glamorous, chaotic","london"],["Colorful, funny, relatable","lizzie"]],
-["Your main-character soundtrack is...",["A confidence anthem","elle"],["An acoustic song","rory"],["Something dramatic","london"],["A nostalgic pop song","lizzie"]]
+["Someone underestimates you.",["Prove them wrong with style","elle"],["Quietly become better than expected","rory"],["Laugh and still somehow win","london"],["Panic then solve it","lizzie"]],
+["Your room probably has...",["A very intentional aesthetic","elle"],["Books + little keepsakes","rory"],["Something fabulous and unnecessary","london"],["Photos + doodles + memories","lizzie"]],
+["Choose an accessory.",["Tiny bag","elle"],["Notebook","rory"],["Oversized sunglasses","london"],["Butterfly clips","lizzie"]],
+["Friends call you for...",["Confidence","elle"],["Advice","rory"],["Entertainment","london"],["Someone who gets it","lizzie"]],
+["Pick a vibe.",["Pink + polished","elle"],["Cozy + thoughtful","rory"],["Loud + glamorous","london"],["Colorful + relatable","lizzie"]],
+["Your main-character soundtrack?",["Confidence anthem","elle"],["Acoustic comfort song","rory"],["Something dramatic","london"],["Nostalgic pop","lizzie"]],
+["Pick a school/work mood.",["I came prepared and cute","elle"],["I have notes for my notes","rory"],["Can someone else do this?","london"],["I'll figure it out five minutes before","lizzie"]],
+["What do you want more of?",["Big goals","elle"],["Quiet little moments","rory"],["Fun and luxury","london"],["Good memories","lizzie"]]
 ];
-const R={elle:["Elle Woods","Bright, determined, underestimated at your own risk. Cute things and serious goals can absolutely coexist."],rory:["Rory Gilmore","Observant, thoughtful and quietly intense. You romanticize little things and always have a mental list going."],london:["London Tipton","A little dramatic, very memorable, and somehow always the main event."],lizzie:["Lizzie McGuire","Relatable chaos with a good heart. You may overthink, but you always find your way back to yourself."]};
-let i=0,s={elle:0,rory:0,london:0,lizzie:0};
-function begin(){start.classList.add('hidden');play.classList.remove('hidden');show()}
-function show(){const q=Q[i];count.textContent=`QUESTION ${i+1} / ${Q.length}`;qtext.textContent=q[0];bar.style.width=`${i/Q.length*100}%`;opts.innerHTML='';q.slice(1).forEach(a=>{const b=document.createElement('button');b.className='qopt';b.textContent=a[0];b.onclick=()=>pick(a[1]);opts.appendChild(b)})}
-function pick(k){s[k]++;sweetPing(820,.055);i++;i>=Q.length?finish():show()}
-function finish(){play.classList.add('hidden');done.classList.remove('hidden');const k=Object.keys(s).sort((a,b)=>s[b]-s[a])[0];rname.textContent=R[k][0];rdesc.textContent=(qname.value?qname.value+', ':'')+R[k][1];sweetPing(1040,.18,'triangle',.03)}
-function restart(){i=0;s={elle:0,rory:0,london:0,lizzie:0};done.classList.add('hidden');start.classList.remove('hidden')}
+const R={elle:["Elle Woods","Bright, determined and underestimated at your own risk. Cute things and serious goals absolutely coexist."],rory:["Rory Gilmore","Thoughtful, observant and quietly intense. You romanticize the little things."],london:["London Tipton","A little dramatic, very memorable, and somehow always the main event."],lizzie:["Lizzie McGuire","Relatable chaos with a good heart. You overthink, recover, and keep going."]};
+let i=0,s={elle:0,rory:0,london:0,lizzie:0};function begin(){start.classList.add('hidden');play.classList.remove('hidden');show()}function show(){let q=Q[i];count.textContent=`QUESTION ${i+1} / ${Q.length}`;qtext.textContent=q[0];bar.style.width=`${i/Q.length*100}%`;opts.innerHTML='';q.slice(1).forEach(a=>{let b=document.createElement('button');b.className='qopt';b.textContent=a[0];b.onclick=()=>pick(a[1]);opts.appendChild(b)})}function pick(k){s[k]++;i++;i>=Q.length?finish():show()}function finish(){play.classList.add('hidden');done.classList.remove('hidden');let k=Object.keys(s).sort((a,b)=>s[b]-s[a])[0];rname.textContent=R[k][0];rdesc.textContent=(qname.value?qname.value+', ':'')+R[k][1];sweetTone(1050,.17,'triangle',.03)}function restart(){i=0;s={elle:0,rory:0,london:0,lizzie:0};done.classList.add('hidden');start.classList.remove('hidden')}
 </script></body></html>

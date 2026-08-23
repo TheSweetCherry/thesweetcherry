@@ -1,120 +1,25 @@
-<!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>thesweetcherry</title><link rel="stylesheet" href="styles.css"></head>
-<body class="home-bg">
-<div class="page-shell">
-<section class="portal">
-<header class="portal-header">
-  <span class="twinkle" style="right:8%;top:18%">✦</span><span class="twinkle" style="right:21%;bottom:10%;animation-delay:.5s">★</span><span class="twinkle" style="left:47%;top:16%;animation-delay:.9s">✧</span>
-  <h1 class="brand">thesweetcherry</h1>
-  <div class="tag">your tiny corner of the 2000s internet ♡</div>
-</header>
-<nav class="portal-tabs">
-  <a href="index.html">♥ home</a><a href="quiz.html">♥ quiz me</a><a href="paint.html">♥ paint</a><a href="photobooth.html">♥ photobooth</a>
-  <button class="sound-toggle" onclick="toggleSweetSound()">🔊 sound on</button>
-</nav>
-<div class="ticker"><span>★ welcome online bestie ★ get your daily cherry ★ take the quiz ★ paint something cute ★ take four pics ★ leave a sweet message ★</span></div>
-<div class="portal-grid">
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>thesweetcherry</title><link rel="stylesheet" href="styles.css"></head>
+<body class="home-bg"><div class="site-wrap">
+<header class="hero"><span class="twinkle" style="right:8%;top:13%">✦</span><span class="twinkle" style="right:22%;bottom:8%;animation-delay:.5s">★</span><h1 class="brand">thesweetcherry</h1><div class="hero-tag">your tiny corner of the 2000s internet ♡</div></header>
+<nav class="tabs"><a href="index.html">♥ home</a><a href="quiz.html">♥ let's quiz!</a><a href="paint.html">♥ paint</a><a href="photobooth.html">♥ photobooth</a><button class="sound-toggle" onclick="toggleSweetSound()">🔊 sound on</button></nav>
+<div class="ticker"><span>★ welcome online bestie ★ pick your daily cherry ★ let's quiz ★ open paint ★ take four pics ★ leave a message ★</span></div>
+<div class="home-grid">
 <aside>
-  <section class="panel">
-    <div class="panel-title">main menu</div>
-    <div class="side-menu">
-      <a class="side-link" href="quiz.html">WHO AM I?</a>
-      <a class="side-link" href="paint.html">OPEN PAINT</a>
-      <a class="side-link" href="photobooth.html">TAKE PICS</a>
-    </div>
-  </section>
-  <section class="panel daily-card" style="margin-top:10px">
-    <div class="panel-title">your daily cherry</div>
-    <div class="cherry-button" id="dailyCherry">🍒</div>
-    <div class="daily-message" id="dailyMessage">click to pick yours ♡</div>
-  </section>
+<section class="panel"><div class="panel-title">main menu</div><div class="side-menu"><a class="side-link" href="quiz.html">LET'S QUIZ!</a><a class="side-link" href="paint.html">OPEN PAINT</a><a class="side-link" href="photobooth.html">TAKE PICS</a></div></section>
+<section class="panel daily" style="margin-top:10px"><div class="panel-title">your daily cherry</div><div class="daily-row"><img src="assets/gifs/daily-cherry.gif" class="daily-cherry" id="dailyCherry"><img src="assets/stickers/pink-sparkles.jpg" class="daily-spark"></div><div class="daily-msg" id="dailyMsg">click the cherry to pick yours ♡</div></section>
 </aside>
-
-<section>
-  <div class="browser">
-    <div class="browser-bar"><span>untitled - Internet Explorer</span><span>_ □ ×</span></div>
-    <div class="browser-menu">File Edit View Favorites Tools Help</div>
-    <div class="browser-content">
-      <div style="max-width:440px">
-        <div class="small">WELCOME TO MY WEBPAGE</div>
-        <h2>pick your chaos ♡</h2>
-        <p>Take a personality quiz, open Paint, or jump into the photobooth and make a four-picture strip.</p>
-        <p><b>no login. no email. just play.</b></p>
-      </div>
-      <div style="position:absolute;right:20px;bottom:15px;font-size:105px;transform:rotate(-10deg);filter:drop-shadow(4px 4px 0 #ffb2dd)">★</div>
-    </div>
-  </div>
-
-  <div class="desktop" style="margin-top:9px">
-    <div class="desktop-item" onclick="location.href='quiz.html'"><span>💿</span>quiz.exe</div>
-    <div class="desktop-item" onclick="location.href='paint.html'"><span>🖥️</span>paint.exe</div>
-    <div class="desktop-item" onclick="location.href='photobooth.html'"><span>📷</span>photos.exe</div>
-    <div class="desktop-item"><span>🍒</span>daily.exe</div>
-  </div>
-
-  <div class="popup" style="margin-top:9px">
-    <div class="popup-head"><span>Message from webpage</span><span>×</span></div>
-    <div class="popup-body"><div style="font-size:34px">⚠️</div><b>Reminder: you are the main character.</b><br><br><button class="okbtn" onclick="this.closest('.popup').style.display='none'">OK</button></div>
-  </div>
-
-  <section class="messenger">
-    <div class="messenger-head"><span>🍒 CherryChat 7.5</span><span>_ □ ×</span></div>
-    <div class="messenger-menu">File Edit Insert People Help</div>
-    <div class="messenger-body">
-      <div class="contacts">
-        <b>All friends</b>
-        <div class="contact"><span class="green-dot"></span>thesweetcherry</div>
-        <div class="contact"><span class="green-dot"></span>quiz.exe</div>
-        <div class="contact"><span class="green-dot"></span>paint.exe</div>
-        <div class="contact"><span class="green-dot"></span>photobooth.exe</div>
-        <div class="contact"><span class="green-dot"></span>daily cherry</div>
-      </div>
-      <div class="chat">
-        <div class="messages" id="messages">
-          <div class="msg"><div class="who">thesweetcherry 🍒</div>hiiii ♡ welcome to my little corner of the internet!!</div>
-          <div class="msg"><div class="who">thesweetcherry 🍒</div>messages in this mockup are saved only in your browser.</div>
-        </div>
-        <div class="chat-entry">
-          <div class="small" style="margin-bottom:5px">mockup guestbook • local only for now</div>
-          <div class="chat-row"><input id="nick" placeholder="nickname"><input id="comment" placeholder="write something sweet..."><button class="sendbtn" id="sendMsg">SEND</button></div>
-        </div>
-      </div>
-    </div>
-  </section>
-</section>
-
+<main>
+<div class="browser"><div class="browser-bar"><span>thesweetcherry - Internet Explorer</span><span>_ □ ×</span></div><div class="browser-menu">File Edit View Favorites Tools Help</div><div class="browser-content"><div style="max-width:440px"><div class="small">WELCOME TO MY WEBPAGE</div><h2>pick your chaos ♡</h2><p>Take a personality quiz, color something cute, or open the photobooth.</p><p><b>no login. no email. just play.</b></p></div><div style="position:absolute;right:20px;bottom:16px;font-size:100px;color:#ff4fac">★</div></div></div>
+<div class="desktop"><div class="desktop-item" onclick="location.href='quiz.html'"><span>💿</span>quiz.exe</div><div class="desktop-item" onclick="location.href='paint.html'"><span>🖥️</span>paint.exe</div><div class="desktop-item" onclick="location.href='photobooth.html'"><span>📷</span>photos.exe</div><div class="desktop-item"><span>🍒</span>daily.exe</div></div>
+<div class="popup"><div class="popup-head"><span>Message from webpage</span><span>×</span></div><div class="popup-body"><b>Reminder: you are the main character.</b><br><br><button class="okbtn" onclick="this.closest('.popup').style.display='none'">OK</button></div></div>
+<section class="chatbox"><div class="chat-head"><span>🍒 CherryChat 7.5</span><span>_ □ ×</span></div><div class="chat-menu">File Edit Insert People Help</div><div class="chat-body"><div class="contacts"><b>All friends</b><div class="contact"><span class="dot"></span>thesweetcherry</div><div class="contact"><span class="dot"></span>quiz.exe</div><div class="contact"><span class="dot"></span>paint.exe</div><div class="contact"><span class="dot"></span>photobooth.exe</div><div class="contact"><span class="dot"></span>daily cherry</div></div><div class="messages-area"><div class="messages" id="messages"><div class="msg"><div class="who">thesweetcherry 🍒</div>hiiii ♡ welcome to my little corner of the internet!!</div><div class="msg"><div class="who">thesweetcherry 🍒</div>guestbook is local-only in V2 while we finish the design.</div></div><div class="entry"><div class="entryrow"><input id="nick" placeholder="nickname"><input id="comment" placeholder="write something sweet..."><button class="send" id="send">SEND</button></div></div></div></div></section>
+</main>
 <aside>
-  <section class="panel">
-    <div class="panel-title">my phone</div>
-    <div class="phone"><div class="phone-screen"><b>Great Games!</b><br><br><a href="quiz.html">personality quiz</a><br><br><a href="paint.html">paint</a></div><div class="phone-btn"></div></div>
-  </section>
-  <section class="panel" style="margin-top:10px;padding-bottom:9px">
-    <div class="panel-title">currently playing</div><div class="cd"></div><div style="text-align:center;font-weight:900;color:#b51c86">★ i love the 2000s ★</div>
-  </section>
-</aside>
-</div>
-<div class="footer">best viewed with glitter, curiosity & absolutely no minimalism ✦</div>
-</section>
-</div>
-<script src="common.js"></script>
-<script>
-const fortunes=[
-"good things are making their way to you ✦","you'll have a reason to smile very soon ♡","your next favorite memory hasn't happened yet",
-"something confusing will make sense soon","you are entering a very cute chapter of your life","your outfit is going to eat today",
-"you deserve a little treat. this is legally binding.","the universe says: stop overthinking that tiny thing","say yes to something unexpected this week",
-"someone will make you laugh when you need it most"
-];
-function fortuneForToday(){
- const d=new Date(),key=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
- let saved=JSON.parse(localStorage.getItem('dailyCherry')||'null');
- if(!saved||saved.key!==key){let seed=0;for(const ch of key)seed+=ch.charCodeAt(0);saved={key,msg:fortunes[seed%fortunes.length]};localStorage.setItem('dailyCherry',JSON.stringify(saved))}
- return saved.msg;
-}
-dailyCherry.onclick=()=>{dailyMessage.textContent=fortuneForToday();sweetPing(980,.12,'triangle',.025)};
-const msgs=JSON.parse(localStorage.getItem('sweetLocalMsgs')||'[]');
-function renderMsgs(){msgs.forEach(m=>{const d=document.createElement('div');d.className='msg mine';d.innerHTML='<div class="who"></div>';d.querySelector('.who').textContent=m.nick||'anonymous';d.append(document.createTextNode(m.text));messages.appendChild(d)})}
-renderMsgs();
-sendMsg.onclick=()=>{const text=comment.value.trim();if(!text)return;msgs.push({nick:nick.value.trim()||'anonymous',text:text.slice(0,180),time:Date.now()});localStorage.setItem('sweetLocalMsgs',JSON.stringify(msgs.slice(-20)));const d=document.createElement('div');d.className='msg mine';d.innerHTML='<div class="who"></div>';d.querySelector('.who').textContent=nick.value.trim()||'anonymous';d.append(document.createTextNode(text.slice(0,180)));messages.appendChild(d);comment.value='';messages.scrollTop=messages.scrollHeight;sweetPing(1040,.08,'triangle',.025)}
-</script>
-</body></html>
+<section class="panel"><div class="panel-title">currently playing</div><img src="assets/images/leopard-cd.jpg" class="cd-img"><div class="notes"><span>♪</span><span>♫</span><span>♪</span></div><div style="text-align:center;font-weight:900;color:#a51a78;padding:0 9px 8px">TheSweetCherry playlist ♡</div><div style="padding:0 10px 12px"><iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/78RdmtqMBcRpXrgFUUf9IB?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div></section>
+<section class="panel" style="margin-top:10px"><div class="panel-title">crush of the month ♡</div><img src="assets/images/pink-flip-phone.jpg" class="phone-img"><div class="month-pick">coming soon: actor / character of the month</div></section>
+</aside></div><div class="footer">best viewed with glitter, leopard print & absolutely no minimalism ✦</div></div>
+<script src="common.js"></script><script>
+const fortunes=["good things are making their way to you ✦","your next favorite memory hasn't happened yet ♡","you are entering a very cute chapter","today is a little-treat day","something confusing will make sense soon","say yes to something unexpected","your outfit is going to eat today"];
+dailyCherry.onclick=()=>{const d=new Date();const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();let s=JSON.parse(localStorage.getItem('dailyCherry')||'null');if(!s||s.k!==k){let n=0;for(const ch of k)n+=ch.charCodeAt(0);s={k,m:fortunes[n%fortunes.length]};localStorage.setItem('dailyCherry',JSON.stringify(s))}dailyMsg.textContent=s.m;sweetTone(980,.1,'triangle',.025)};
+let m=JSON.parse(localStorage.getItem('sweetLocalMsgs')||'[]');m.forEach(a=>add(a.nick,a.text));function add(n,t){let d=document.createElement('div');d.className='msg mine';d.innerHTML='<div class="who"></div>';d.querySelector('.who').textContent=n||'anonymous';d.append(document.createTextNode(t));messages.appendChild(d)}send.onclick=()=>{let t=comment.value.trim();if(!t)return;let a={nick:nick.value.trim()||'anonymous',text:t.slice(0,180)};m.push(a);localStorage.setItem('sweetLocalMsgs',JSON.stringify(m.slice(-20)));add(a.nick,a.text);comment.value='';messages.scrollTop=messages.scrollHeight};
+</script></body></html>
