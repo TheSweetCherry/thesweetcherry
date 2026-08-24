@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Let's Quiz - TheSweetCherry</title><link rel="stylesheet" href="styles.css"></head>
+<body class="quiz-body"><nav class="site-nav"><a href="index.html">home</a><a href="dressup.html">dress up</a><a href="photobooth.html">photobooth</a><a href="quiz.html">let's quiz!</a></nav>
+<div class="quiz-wrap"><div class="quiz-card">
+<div id="qStart"><div style="font-weight:900;color:#a51b71">PERSONALITY QUIZ</div><h1 class="y2k-title">Let's Quiz!</h1><h2>Which 2000s character are you?</h2><p>10 questions. Pick whatever feels the most like you.</p><button class="btn hot" onclick="begin()">START QUIZ »</button></div>
+<div id="qPlay" class="hidden"><div class="progress"><div id="bar"></div></div><div id="qCount" style="font-size:12px;font-weight:900"></div><div class="question" id="question"></div><div class="answers" id="answers"></div></div>
+<div id="qDone" class="hidden"><div style="font-weight:900;color:#a51b71">OMG YOU GOT...</div><div class="result-card"><h2 id="resultName"></h2><p id="resultText"></p><button class="btn" onclick="restart()">♡ RETAKE QUIZ ♡</button></div></div>
+</div></div>
+<script src="common.js"></script><script>
+const Q=[
+["Your perfect Friday night?",["Going somewhere iconic","elle"],["Cozy night + favorite people","rory"],["Something chaotic that becomes a story","london"],["Snacks + spontaneous plan","lizzie"]],
+["Pick your biggest strength.",["I know what I want","elle"],["I notice everything","rory"],["I make anything entertaining","london"],["I figure it out as I go","lizzie"]],
+["Someone underestimates you.",["Prove them wrong with style","elle"],["Quietly become better than expected","rory"],["Laugh and still somehow win","london"],["Panic then solve it","lizzie"]],
+["Your room probably has...",["A very intentional aesthetic","elle"],["Books + little keepsakes","rory"],["Something fabulous and unnecessary","london"],["Photos + doodles + memories","lizzie"]],
+["Choose an accessory.",["Tiny bag","elle"],["Notebook","rory"],["Oversized sunglasses","london"],["Butterfly clips","lizzie"]],
+["Friends call you for...",["Confidence","elle"],["Advice","rory"],["Entertainment","london"],["Someone who gets it","lizzie"]],
+["Pick a vibe.",["Pink + polished","elle"],["Cozy + thoughtful","rory"],["Loud + glamorous","london"],["Colorful + relatable","lizzie"]],
+["Your main-character soundtrack?",["Confidence anthem","elle"],["Acoustic comfort song","rory"],["Something dramatic","london"],["Nostalgic pop","lizzie"]],
+["Pick a school/work mood.",["I came prepared and cute","elle"],["I have notes for my notes","rory"],["Can someone else do this?","london"],["I'll figure it out five minutes before","lizzie"]],
+["What do you want more of?",["Big goals","elle"],["Quiet little moments","rory"],["Fun and luxury","london"],["Good memories","lizzie"]]
+];
+const R={elle:["Elle Woods","Bright, determined and underestimated at your own risk. Cute things and serious goals absolutely coexist."],rory:["Rory Gilmore","Thoughtful, observant and quietly intense. You romanticize the little things."],london:["London Tipton","A little dramatic, extremely memorable, and somehow always the main event."],lizzie:["Lizzie McGuire","Relatable chaos with a good heart. You overthink, recover, and keep going."]};
+let i=0,s={elle:0,rory:0,london:0,lizzie:0};
+function begin(){qStart.classList.add('hidden');qPlay.classList.remove('hidden');show()}
+function show(){const q=Q[i];qCount.textContent=`QUESTION ${i+1} / ${Q.length}`;question.textContent=q[0];bar.style.width=`${i/Q.length*100}%`;answers.innerHTML='';q.slice(1).forEach(a=>{const b=document.createElement('button');b.className='answer';b.textContent=a[0];b.onclick=()=>pick(a[1]);answers.appendChild(b)})}
+function pick(k){s[k]++;i++;i>=Q.length?finish():show()}
+function finish(){qPlay.classList.add('hidden');qDone.classList.remove('hidden');const k=Object.keys(s).sort((a,b)=>s[b]-s[a])[0];resultName.textContent=R[k][0];resultText.textContent=R[k][1];tone(1080,.13)}
+function restart(){i=0;s={elle:0,rory:0,london:0,lizzie:0};qDone.classList.add('hidden');qStart.classList.remove('hidden')}
+</script></body></html>

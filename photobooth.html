@@ -1,0 +1,50 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Photobooth - TheSweetCherry</title><link rel="stylesheet" href="styles.css"></head>
+<body class="photo-body"><nav class="site-nav"><a href="index.html">home</a><a href="dressup.html">dress up</a><a href="photobooth.html">photobooth</a><a href="quiz.html">let's quiz!</a></nav>
+<h1 class="y2k-title" style="text-align:center;font-size:72px;margin:20px 0">Photobooth ♡</h1>
+<div class="photo-wrap">
+  <section>
+    <div class="laptop-stage">
+      <img src="assets/images/laptop.png" alt="pink y2k laptop">
+      <div class="camera-screen"><video id="video" autoplay playsinline muted></video><button class="btn hot" id="startCam">START CAMERA ♡</button><div class="countdown hidden" id="countdown"></div></div>
+    </div>
+    <div class="shots"><div class="shot" id="s0"></div><div class="shot" id="s1"></div><div class="shot" id="s2"></div><div class="shot" id="s3"></div></div>
+  </section>
+  <aside class="window photo-panel">
+    <div class="window-title">choose your strip ✦</div>
+    <p style="font-size:12px">Take four photos, then pick a frame.</p>
+    <div class="frame-grid" id="frameGrid">
+      <button class="frame-choice active" data-frame="cheetah">pink cheetah</button>
+      <button class="frame-choice" data-frame="glitter">hot pink glitter</button>
+      <button class="frame-choice" data-frame="white">classic white</button>
+      <button class="frame-choice" data-frame="cherry">cherry</button>
+      <button class="frame-choice" data-frame="stripe">pink stripe</button>
+      <button class="frame-choice" data-frame="blackberry">cherryMobile</button>
+    </div>
+    <canvas class="output-canvas" id="out" width="560" height="1500"></canvas>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:9px"><button class="btn" id="takeAgain">TAKE 4 PICS</button><button class="btn hot" id="savePhoto">SAVE PIC ↓</button></div>
+  </aside>
+</div>
+<script src="common.js"></script><script>
+let stream=null,pics=[],frame='cheetah';const ctx=out.getContext('2d');
+async function camera(){try{if(!stream){stream=await navigator.mediaDevices.getUserMedia({video:true,audio:false});video.srcObject=stream}startCam.classList.add('hidden');await sequence()}catch(e){alert('Please allow camera access. GitHub Pages needs camera permission.')}}
+function wait(ms){return new Promise(r=>setTimeout(r,ms))}
+async function count(){countdown.classList.remove('hidden');for(let n=3;n>=1;n--){countdown.textContent=n;tone(670,.05);await wait(550)}countdown.textContent='✦';await wait(200);countdown.classList.add('hidden')}
+function snap(i){const c=document.createElement('canvas');c.width=640;c.height=480;const x=c.getContext('2d');x.translate(640,0);x.scale(-1,1);x.drawImage(video,0,0,640,480);pics.push(c);const im=new Image();im.src=c.toDataURL();document.getElementById('s'+i).innerHTML='';document.getElementById('s'+i).appendChild(im)}
+async function sequence(){pics=[];for(let i=0;i<4;i++){await count();snap(i);tone(1180,.05);await wait(360)}render()}
+function pattern(bg){ctx.fillStyle=bg;ctx.fillRect(0,0,out.width,out.height)}
+function render(){
+ ctx.clearRect(0,0,out.width,out.height);
+ if(frame==='blackberry'){ctx.fillStyle='#141115';ctx.fillRect(30,20,500,1460);ctx.fillStyle='#fff';ctx.font='21px monospace';ctx.textAlign='center';ctx.fillText('6:24 PM      cherryMobile ♡',280,58);if(!pics.length){ctx.fillText('take your four photos first',280,110);return}pics.forEach((p,i)=>ctx.drawImage(p,58,88+i*275,444,250));ctx.fillStyle='#241722';ctx.fillRect(65,1208,430,205);ctx.fillStyle='#ff58ad';ctx.font='28px monospace';for(let r=0;r<4;r++)for(let c=0;c<8;c++)ctx.fillText('•',95+c*50,1250+r*48);return}
+ let bg={cheetah:'#ed88bd',glitter:'#ff3c9f',white:'#fff',cherry:'#ffb8d3',stripe:'#f4abc9'}[frame]||'#fff';pattern(bg);
+ if(frame==='cheetah'){ctx.strokeStyle='#321126';ctx.lineWidth=5;for(let i=0;i<190;i++){let x=Math.random()*560,y=Math.random()*1500,r=5+Math.random()*8;ctx.beginPath();ctx.ellipse(x,y,r,r*.55,Math.random()*3,0,Math.PI*2);ctx.stroke()}}
+ if(frame==='glitter'){ctx.fillStyle='rgba(255,255,255,.9)';for(let i=0;i<420;i++)ctx.fillRect(Math.random()*560,Math.random()*1500,1+Math.random()*3,1+Math.random()*3)}
+ if(frame==='cherry'){ctx.font='27px serif';for(let y=28;y<1500;y+=65)for(let x=14;x<560;x+=84)ctx.fillText('🍒',x,y)}
+ if(frame==='stripe'){for(let x=0;x<560;x+=42){ctx.fillStyle=x%84===0?'#85375c':'#f4abc9';ctx.fillRect(x,0,42,1500)}}
+ if(!pics.length){ctx.fillStyle=frame==='white'?'#7b2057':'#fff';ctx.textAlign='center';ctx.font='25px Arial';ctx.fillText('take your four photos first ♡',280,90);return}
+ const m=42,g=18,h=(1500-84-g*3)/4;pics.forEach((p,i)=>{let y=42+i*(h+g);ctx.fillStyle='#fff';ctx.fillRect(m,y,476,h);ctx.drawImage(p,m,y,476,h)});
+ ctx.fillStyle=frame==='white'?'#8e1d63':'#fff';ctx.font='22px Arial';ctx.textAlign='center';ctx.fillText('thesweetcherry ♡',280,1485)
+}
+startCam.onclick=camera;takeAgain.onclick=async()=>{if(!stream)await camera();else await sequence()};
+frameGrid.onclick=e=>{const b=e.target.closest('[data-frame]');if(!b)return;frame=b.dataset.frame;document.querySelectorAll('.frame-choice').forEach(x=>x.classList.toggle('active',x===b));render()};
+savePhoto.onclick=()=>{if(!pics.length)return alert('Take your photos first!');const a=document.createElement('a');a.download='thesweetcherry-photo.png';a.href=out.toDataURL();a.click()};render();
+</script></body></html>
