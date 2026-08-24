@@ -18,3 +18,10 @@ Do not upload the ZIP itself. Extract it and upload the CONTENTS.
 
 Spotify playlist:
 78RdmtqMBcRpXrgFUUf9IB
+
+REBUILD V2 FIXES
+- Rebuilt Dress-Up doll with adult proportions and relaxed standing pose.
+- Rewrote Dress-Up controls so every category works reliably (skin, hair, face, makeup, tops, bottoms, dresses, shoes, bags).
+- Added clearly visible category buttons and clothing option cards.
+- Tom Holland is now composited directly inside the pink phone image, so his picture cannot spill outside the phone screen.
+- Everything else from Clean Rebuild V1 remains unchanged.

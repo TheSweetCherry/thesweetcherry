@@ -256,3 +256,29 @@ html.use-cursor,html.use-cursor *{cursor:none!important}
   .dress-main{grid-template-columns:1fr}.dress-controls{border-right:0;border-bottom:2px solid #c48cad}
   .options-grid{grid-template-columns:repeat(4,1fr)}
 }
+
+/* ===== Rebuild V2 fixes ===== */
+.dress-hint{
+  font-size:12px;font-weight:900;color:#8f1c65;text-align:center;
+  background:#fff5fb;border:2px solid #e5a0c8;padding:7px;margin-bottom:8px;
+}
+.cat-tabs{display:grid !important;grid-template-columns:repeat(3,1fr);gap:6px!important}
+.cat-tab{display:block!important;visibility:visible!important;min-height:34px}
+.options-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+.option{
+  display:flex!important;flex-direction:column;align-items:center;justify-content:center;
+  min-height:86px!important;padding:8px!important;gap:6px;
+}
+.option-icon{font-size:25px;line-height:1}
+.doll-area{min-height:720px!important}
+#dollSvg{width:min(500px,88%)!important;max-height:760px}
+.crush-composite{cursor:pointer}
+.crush-composite.flash::after{
+  content:"✦ ✧ ✦";position:absolute;inset:0;display:grid;place-items:center;
+  color:white;font-size:36px;text-shadow:0 0 8px #ff2b98,0 0 14px white;
+  animation:phoneShimmer .8s ease-out forwards;pointer-events:none;
+}
+@media(max-width:600px){
+  .cat-tabs{grid-template-columns:repeat(2,1fr)!important}
+  .options-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}

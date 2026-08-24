@@ -1,58 +1,95 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dress Up - TheSweetCherry</title><link rel="stylesheet" href="styles.css"></head>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dress Up - TheSweetCherry</title>
+<link rel="stylesheet" href="styles.css">
+</head>
 <body class="dress-body">
-<nav class="site-nav"><a href="index.html">home</a><a href="dressup.html">dress up</a><a href="photobooth.html">photobooth</a><a href="quiz.html">let's quiz!</a></nav>
-<div class="dress-wrap"><h1 class="y2k-title" style="text-align:center;font-size:70px;margin:12px">Dress Me! ♡</h1>
-<div class="dress-window">
-  <div class="dress-titlebar">🍒 CherryDoll.exe <span style="float:right">_ □ ×</span></div>
-  <div class="dress-menu">File Edit View Closet Makeup Help</div>
-  <div class="dress-main">
-    <aside class="dress-controls">
-      <div class="cat-tabs" id="tabs"></div>
-      <div class="options-grid" id="options"></div>
-    </aside>
-    <main class="doll-area">
-      <svg id="dollSvg" viewBox="0 0 420 690" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="leopardPattern" width="30" height="30" patternUnits="userSpaceOnUse">
-            <rect width="30" height="30" fill="#ff91c9"/><ellipse cx="9" cy="10" rx="7" ry="4" fill="#401029"/><ellipse cx="23" cy="22" rx="6" ry="4" fill="#401029"/>
-          </pattern>
-        </defs>
-        <!-- hair back -->
-        <g id="hairBack"></g>
-        <!-- body -->
-        <g id="body" fill="#d9a27d">
-          <ellipse cx="210" cy="100" rx="55" ry="68"/>
-          <rect x="191" y="151" width="38" height="39" rx="14"/>
-          <path d="M145 191 Q210 160 275 191 L291 345 Q249 371 210 371 Q171 371 129 345Z"/>
-          <path d="M144 204 Q116 220 104 285 L90 382 Q96 399 113 391 L139 291 L157 239Z"/>
-          <path d="M276 204 Q304 220 316 285 L330 382 Q324 399 307 391 L281 291 L263 239Z"/>
-          <path d="M157 350 L201 350 L197 570 Q187 592 166 576 L150 393Z"/>
-          <path d="M219 350 L263 350 L270 575 Q248 593 236 571 L221 393Z"/>
-        </g>
-        <!-- base undergarment -->
-        <path d="M147 194 Q210 169 273 194 L260 285 Q210 305 160 285Z" fill="#f8e8ef"/>
-        <path d="M151 350 Q210 375 269 350 L261 400 Q210 420 159 400Z" fill="#f8e8ef"/>
-        <!-- eye shadow -->
-        <g id="shadow" opacity="0"></g>
-        <!-- face -->
-        <g id="face">
-          <path id="eyeL" d="M177 102 Q189 92 200 102" fill="none" stroke="#381426" stroke-width="4" stroke-linecap="round"/>
-          <path id="eyeR" d="M220 102 Q231 92 243 102" fill="none" stroke="#381426" stroke-width="4" stroke-linecap="round"/>
-          <path id="mouth" d="M194 131 Q210 142 226 131" fill="none" stroke="#a82c67" stroke-width="5" stroke-linecap="round"/>
-          <path id="tear" d="" fill="#7fc9ff"/>
-          <ellipse id="lipsFill" cx="210" cy="133" rx="0" ry="0" fill="#ef6a9d"/>
-        </g>
-        <!-- hair front -->
-        <g id="hairFront"></g>
-        <!-- clothes -->
-        <g id="topLayer"></g>
-        <g id="bottomLayer"></g>
-        <g id="dressLayer"></g>
-        <g id="shoeLayer"></g>
-        <g id="bagLayer"></g>
-      </svg>
-    </main>
+<nav class="site-nav">
+  <a href="index.html">home</a>
+  <a href="dressup.html">dress up</a>
+  <a href="photobooth.html">photobooth</a>
+  <a href="quiz.html">let's quiz!</a>
+</nav>
+
+<div class="dress-wrap">
+  <h1 class="y2k-title" style="text-align:center;font-size:70px;margin:12px">Dress Me! ♡</h1>
+
+  <div class="dress-window">
+    <div class="dress-titlebar">🍒 CherryDoll.exe <span style="float:right">_ □ ×</span></div>
+    <div class="dress-menu">File Edit View Closet Makeup Help</div>
+
+    <div class="dress-main">
+      <aside class="dress-controls">
+        <div class="dress-hint">pick a category, then click an option ♡</div>
+        <div class="cat-tabs" id="dressTabs"></div>
+        <div class="options-grid" id="dressOptions"></div>
+      </aside>
+
+      <main class="doll-area">
+        <svg id="dollSvg" viewBox="0 0 500 820" xmlns="http://www.w3.org/2000/svg" aria-label="adult fashion doll">
+          <defs>
+            <pattern id="leopardPattern" width="34" height="34" patternUnits="userSpaceOnUse">
+              <rect width="34" height="34" fill="#ff96ca"/>
+              <ellipse cx="9" cy="10" rx="7" ry="4" fill="#381023"/>
+              <ellipse cx="26" cy="23" rx="6" ry="4" fill="#381023"/>
+            </pattern>
+            <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <!-- hair behind body -->
+          <g id="hairBackLayer"></g>
+
+          <!-- adult body: long legs, narrower waist, relaxed arms -->
+          <g id="skinLayer" fill="#d7a07b">
+            <ellipse cx="250" cy="112" rx="49" ry="61"/>
+            <rect x="232" y="162" width="36" height="38" rx="14"/>
+            <path d="M184 201 Q250 171 316 201 L300 347 Q285 379 250 386 Q215 379 200 347Z"/>
+            <path d="M190 214 Q161 231 151 279 L126 439 Q132 454 146 447 L176 316 L203 237Z"/>
+            <path d="M310 214 Q339 231 349 279 L374 439 Q368 454 354 447 L324 316 L297 237Z"/>
+            <path d="M205 368 Q225 386 244 386 L235 704 Q226 732 204 718 L188 435Z"/>
+            <path d="M256 386 Q276 386 295 368 L312 718 Q289 733 280 704 L265 435Z"/>
+          </g>
+
+          <!-- simple base underwear -->
+          <path d="M198 207 Q250 184 302 207 L292 314 Q250 329 208 314Z" fill="#f7e7ee"/>
+          <path d="M205 365 Q250 387 295 365 L288 418 Q250 434 212 418Z" fill="#f7e7ee"/>
+
+          <!-- makeup behind facial linework -->
+          <g id="shadowLayer"></g>
+
+          <!-- face -->
+          <g id="faceLayer">
+            <path id="eyeLeft" d="M218 110 Q229 101 240 110" fill="none" stroke="#351425" stroke-width="4" stroke-linecap="round"/>
+            <path id="eyeRight" d="M260 110 Q271 101 282 110" fill="none" stroke="#351425" stroke-width="4" stroke-linecap="round"/>
+            <path id="mouthLine" d="M231 141 Q250 151 269 141" fill="none" stroke="#c54d7b" stroke-width="5" stroke-linecap="round"/>
+            <path id="tearDrop" d="" fill="#7dcaff"/>
+          </g>
+
+          <!-- hair in front -->
+          <g id="hairFrontLayer"></g>
+
+          <!-- clothes/accessories -->
+          <g id="topLayer"></g>
+          <g id="bottomLayer"></g>
+          <g id="dressLayer"></g>
+          <g id="shoeLayer"></g>
+          <g id="bagLayer"></g>
+        </svg>
+      </main>
+    </div>
+
+    <div class="dress-bottom">
+      <button class="btn" id="randomizeBtn">RANDOMIZE ♡</button>
+      <button class="btn" id="resetBtn">RESET</button>
+      <button class="btn hot" id="saveDollBtn">SAVE MY DOLL ↓</button>
+    </div>
   </div>
-  <div class="dress-bottom"><button class="btn" id="randomize">RANDOMIZE ♡</button><button class="btn" id="reset">RESET</button><button class="btn hot" id="saveDoll">SAVE MY DOLL ↓</button></div>
-</div></div>
-<script src="common.js"></script><script src="dressup.js"></script></body></html>
+</div>
+
+<script src="common.js"></script>
+<script src="dressup.js"></script>
+</body>
+</html>
