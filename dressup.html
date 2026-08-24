@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dress Up - TheSweetCherry</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body.dress-perfect{
+  margin:0;
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(255,110,184,.13),rgba(255,110,184,.13)),
+    url('assets/images/pink-leopard.jpg') center/460px auto repeat fixed;
+  font-family:Tahoma,Arial,sans-serif;
+}
+.dress-perfect .site-nav{position:sticky;top:0;z-index:200}
+.dress-perfect-wrap{
+  width:min(1500px,98vw);
+  margin:18px auto 55px;
+}
+.dress-perfect-title{
+  text-align:center;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(48px,6.3vw,90px);
+  color:#ff8ac7;
+  -webkit-text-stroke:2px #651347;
+  text-shadow:3px 3px #ffd6e9,6px 6px rgba(80,18,59,.18);
+  margin:8px 0 15px;
+}
+.dress-game-shell{
+  position:relative;
+  width:100%;
+  aspect-ratio:3 / 2;
+  min-height:680px;
+  background:#f9c6df url('assets/images/dressup-perfect-reference.png') center/100% 100% no-repeat;
+  border:5px solid #641548;
+  box-shadow:0 0 0 6px #ff8ac7,0 0 0 10px white,0 0 30px rgba(70,0,52,.4);
+  overflow:hidden;
+}
+.live-stage{
+  position:absolute;
+  left:39.2%;
+  top:13.5%;
+  width:21.8%;
+  height:73.5%;
+  background:linear-gradient(rgba(255,225,240,.96),rgba(255,209,232,.95));
+  border:2px solid rgba(219,92,157,.28);
+  border-radius:32px;
+  z-index:5;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+.live-stage:before{
+  content:"mix, match & create your look! ♡";
+  position:absolute;
+  top:3.5%;
+  width:100%;
+  text-align:center;
+  color:#df2d8c;
+  font-weight:900;
+  font-size:clamp(10px,1vw,16px);
+}
+#liveDoll{
+  position:absolute;
+  top:10.5%;
+  width:88%;
+  height:auto;
+  max-height:88%;
+  filter:drop-shadow(4px 6px 0 rgba(102,20,72,.08));
+}
+.hotspot{
+  position:absolute;
+  z-index:10;
+  border:0;
+  padding:0;
+  background:transparent;
+  border-radius:9px;
+}
+.hotspot:hover{
+  outline:3px solid #ff3ca1;
+  background:rgba(255,255,255,.15);
+}
+.hotspot.selected{
+  outline:4px solid #fff;
+  box-shadow:0 0 0 3px #ff38a0,0 0 15px #fff;
+}
+.hotspot::after{
+  content:attr(data-name);
+  position:absolute;
+  left:50%;bottom:-20px;
+  transform:translateX(-50%);
+  background:#fff4fa;
+  color:#8f1b65;
+  border:1px solid #cf699e;
+  padding:2px 5px;
+  font-size:9px;
+  font-weight:900;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+}
+.hotspot:hover::after{opacity:1}
+.skin-hotspot{
+  position:absolute;z-index:12;border-radius:50%;border:0;
+  box-shadow:0 0 0 2px rgba(92,18,66,.35);
+}
+.skin-hotspot:hover,.skin-hotspot.selected{outline:4px solid white;box-shadow:0 0 0 4px #ff3aa0}
+.face-controls{
+  position:absolute;
+  left:40.7%;top:51.4%;
+  width:4.1%;height:28.5%;
+  z-index:15;
+  display:grid;
+  grid-template-rows:repeat(4,1fr);
+  gap:6px;
+}
+.face-controls button{
+  border:0;background:transparent;border-radius:10px;
+}
+.face-controls button:hover,.face-controls button.selected{
+  outline:3px solid #ff3ca1;background:rgba(255,255,255,.22)
+}
+.dress-action{
+  position:absolute;z-index:15;
+  bottom:3.4%;
+  height:6.5%;
+  border:0;border-radius:18px;background:transparent;
+}
+.dress-action:hover{outline:4px solid white;box-shadow:0 0 0 3px #ff3ca1}
+#randomBtn{left:26.5%;width:12.4%}
+#resetBtn{left:40.8%;width:10.8%}
+#saveBtn{left:53.2%;width:15.1%}
+.selection-status{
+  position:absolute;left:40.2%;bottom:11%;
+  width:19.8%;
+  z-index:20;text-align:center;
+  color:#a31c72;font-size:11px;font-weight:900;
+  background:rgba(255,246,251,.86);
+  border:1px solid #e39abc;border-radius:9px;padding:3px;
+}
+@media(max-width:900px){
+  .dress-game-shell{
+    min-height:0;
+  }
+  .hotspot::after{display:none}
+}
+</style>
+</head>
+
+<body class="dress-perfect">
+<nav class="site-nav">
+  <a href="index.html">home</a>
+  <a href="dressup.html">dress up</a>
+  <a href="photobooth.html">photobooth</a>
+  <a href="quiz.html">let's quiz!</a>
+</nav>
+
+<div class="dress-perfect-wrap">
+  <h1 class="dress-perfect-title">Dress Me! ♡</h1>
+
+  <div class="dress-game-shell" id="gameShell">
+
+    <!-- We cover the generated center doll with a live, functional doll.
+         The wardrobes around it remain the exact visual the user approved. -->
+    <section class="live-stage">
+      <svg id="liveDoll" viewBox="0 0 500 820" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="cheetahPattern" width="30" height="30" patternUnits="userSpaceOnUse">
+            <rect width="30" height="30" fill="#f38ac2"/>
+            <ellipse cx="8" cy="10" rx="6" ry="4" fill="#341023"/>
+            <ellipse cx="23" cy="22" rx="5" ry="3.5" fill="#341023"/>
+          </pattern>
+        </defs>
+
+        <g id="hairBackLayer"></g>
+
+        <!-- adult fashion-doll proportions -->
+        <g id="skinLayer" fill="#dca77f">
+          <ellipse cx="250" cy="105" rx="48" ry="59"/>
+          <rect x="233" y="158" width="34" height="39" rx="14"/>
+          <path d="M190 201 Q250 172 310 201 L299 348 Q280 383 250 389 Q220 383 201 348Z"/>
+          <path d="M194 214 Q167 234 158 281 L137 435 Q142 448 155 441 L182 311 L204 237Z"/>
+          <path d="M306 214 Q333 234 342 281 L363 435 Q358 448 345 441 L318 311 L296 237Z"/>
+          <path d="M205 370 Q224 389 244 388 L236 708 Q226 735 205 720 L191 438Z"/>
+          <path d="M256 388 Q276 389 295 370 L309 720 Q288 735 279 708 L264 438Z"/>
+        </g>
+
+        <!-- white base outfit -->
+        <path d="M205 207 Q250 187 295 207 L288 311 Q250 327 212 311Z" fill="#fff"/>
+        <path d="M206 369 Q250 389 294 369 L288 418 Q250 433 212 418Z" fill="#fff"/>
+
+        <g id="shadowLayer"></g>
+
+        <g id="faceLayer">
+          <path id="eyeLeft" d="M219 106 Q230 97 241 106" fill="none" stroke="#311324" stroke-width="4" stroke-linecap="round"/>
+          <path id="eyeRight" d="M259 106 Q270 97 281 106" fill="none" stroke="#311324" stroke-width="4" stroke-linecap="round"/>
+          <path id="mouthLine" d="M232 140 Q250 150 268 140" fill="none" stroke="#cc4f80" stroke-width="5" stroke-linecap="round"/>
+          <path id="tearDrop" d="" fill="#7dcaff"/>
+        </g>
+
+        <g id="hairFrontLayer"></g>
+        <g id="topLayer"></g>
+        <g id="bottomLayer"></g>
+        <g id="dressLayer"></g>
+        <g id="outerLayer"></g>
+        <g id="shoeLayer"></g>
+        <g id="bagLayer"></g>
+      </svg>
+    </section>
+
+    <!-- Hair hotspots on the exact approved wardrobe visual -->
+    <button class="hotspot" data-group="hair" data-value="blonde" data-name="blonde" style="left:2.7%;top:17.2%;width:7.2%;height:14.5%"></button>
+    <button class="hotspot" data-group="hair" data-value="brown" data-name="brown waves" style="left:10.1%;top:17.2%;width:6.8%;height:14.5%"></button>
+    <button class="hotspot" data-group="hair" data-value="purple" data-name="purple waves" style="left:17.2%;top:17.2%;width:6.8%;height:14.5%"></button>
+    <button class="hotspot" data-group="hair" data-value="red" data-name="red waves" style="left:24.2%;top:17.2%;width:6.9%;height:14.5%"></button>
+    <button class="hotspot" data-group="hair" data-value="black" data-name="black updo" style="left:31.1%;top:17.2%;width:6.4%;height:14.5%"></button>
+
+    <!-- Tops -->
+    <button class="hotspot" data-group="top" data-value="stripe" data-name="stripe top" style="left:2.6%;top:39.2%;width:6.3%;height:11.6%"></button>
+    <button class="hotspot" data-group="top" data-value="pinkCorset" data-name="pink corset" style="left:9.5%;top:39.2%;width:6.4%;height:11.6%"></button>
+    <button class="hotspot" data-group="top" data-value="redCardigan" data-name="red cardigan" style="left:16.6%;top:39.2%;width:6.7%;height:11.6%"></button>
+    <button class="hotspot" data-group="top" data-value="whiteBlouse" data-name="white blouse" style="left:23.4%;top:39.2%;width:6.5%;height:11.6%"></button>
+    <button class="hotspot" data-group="top" data-value="yellowHalter" data-name="yellow halter" style="left:30.1%;top:39.2%;width:6.3%;height:11.6%"></button>
+    <button class="hotspot" data-group="top" data-value="pinkBlack" data-name="pink & black" style="left:36.5%;top:39.2%;width:6.2%;height:11.6%"></button>
+
+    <!-- Dresses -->
+    <button class="hotspot" data-group="dress" data-value="blackDress" data-name="black sparkle" style="left:2.5%;top:55.0%;width:6.5%;height:14%"></button>
+    <button class="hotspot" data-group="dress" data-value="pinkDress" data-name="pink dress" style="left:9.6%;top:55.0%;width:6.3%;height:14%"></button>
+    <button class="hotspot" data-group="dress" data-value="redDress" data-name="red dress" style="left:16.5%;top:55.0%;width:6.2%;height:14%"></button>
+    <button class="hotspot" data-group="dress" data-value="floralDress" data-name="floral dress" style="left:23.1%;top:55.0%;width:6.5%;height:14%"></button>
+    <button class="hotspot" data-group="dress" data-value="creamDress" data-name="cream dress" style="left:29.9%;top:55.0%;width:6.2%;height:14%"></button>
+    <button class="hotspot" data-group="dress" data-value="blackPinkDress" data-name="black pink dress" style="left:36.3%;top:55.0%;width:6.2%;height:14%"></button>
+
+    <!-- Outerwear -->
+    <button class="hotspot" data-group="outer" data-value="brownJacket" data-name="brown jacket" style="left:2.2%;top:75.0%;width:7.3%;height:11.8%"></button>
+    <button class="hotspot" data-group="outer" data-value="blackJacket" data-name="black jacket" style="left:9.9%;top:75.0%;width:6.8%;height:11.8%"></button>
+    <button class="hotspot" data-group="outer" data-value="pinkFur" data-name="pink fur" style="left:17.2%;top:75.0%;width:6.8%;height:11.8%"></button>
+    <button class="hotspot" data-group="outer" data-value="denimJacket" data-name="denim jacket" style="left:24.1%;top:75.0%;width:6.8%;height:11.8%"></button>
+    <button class="hotspot" data-group="outer" data-value="leopardJacket" data-name="leopard jacket" style="left:31.0%;top:75.0%;width:6.8%;height:11.8%"></button>
+
+    <!-- Skin tone swatches -->
+    <button class="skin-hotspot" data-skin="#f2d6c6" style="left:65.7%;top:18.4%;width:2.9%;height:4.4%;background:#f2d6c6"></button>
+    <button class="skin-hotspot" data-skin="#e6b88d" style="left:69.8%;top:18.4%;width:2.9%;height:4.4%;background:#e6b88d"></button>
+    <button class="skin-hotspot" data-skin="#dca77f" style="left:73.9%;top:18.4%;width:2.9%;height:4.4%;background:#dca77f"></button>
+    <button class="skin-hotspot" data-skin="#c98a55" style="left:78.0%;top:18.4%;width:2.9%;height:4.4%;background:#c98a55"></button>
+    <button class="skin-hotspot" data-skin="#a96839" style="left:82.1%;top:18.4%;width:2.9%;height:4.4%;background:#a96839"></button>
+    <button class="skin-hotspot" data-skin="#7b4525" style="left:86.2%;top:18.4%;width:2.9%;height:4.4%;background:#7b4525"></button>
+    <button class="skin-hotspot" data-skin="#512d1b" style="left:90.3%;top:18.4%;width:2.9%;height:4.4%;background:#512d1b"></button>
+
+    <!-- Bottoms -->
+    <button class="hotspot" data-group="bottom" data-value="denimMini" data-name="denim mini" style="left:63.5%;top:31.0%;width:5.7%;height:11%"></button>
+    <button class="hotspot" data-group="bottom" data-value="blackMini" data-name="black mini" style="left:69.0%;top:31.0%;width:5.7%;height:11%"></button>
+    <button class="hotspot" data-group="bottom" data-value="pinkMini" data-name="pink mini" style="left:74.5%;top:31.0%;width:5.7%;height:11%"></button>
+    <button class="hotspot" data-group="bottom" data-value="wideJeans" data-name="wide jeans" style="left:79.5%;top:31.0%;width:5.0%;height:18%"></button>
+    <button class="hotspot" data-group="bottom" data-value="cargo" data-name="cargo pants" style="left:85.0%;top:31.0%;width:5.1%;height:18%"></button>
+    <button class="hotspot" data-group="bottom" data-value="sparklePants" data-name="sparkle pants" style="left:90.5%;top:31.0%;width:5.2%;height:18%"></button>
+
+    <!-- Shoes -->
+    <button class="hotspot" data-group="shoes" data-value="blackBoot" data-name="black boots" style="left:63.3%;top:54.0%;width:5.8%;height:10.5%"></button>
+    <button class="hotspot" data-group="shoes" data-value="pinkSneaker" data-name="pink sneakers" style="left:69.1%;top:54.0%;width:5.8%;height:10.5%"></button>
+    <button class="hotspot" data-group="shoes" data-value="blackSneaker" data-name="black sneakers" style="left:75.1%;top:54.0%;width:5.8%;height:10.5%"></button>
+    <button class="hotspot" data-group="shoes" data-value="pinkHeel" data-name="pink heels" style="left:81.0%;top:54.0%;width:5.4%;height:10.5%"></button>
+    <button class="hotspot" data-group="shoes" data-value="leopardBoot" data-name="leopard boots" style="left:87.0%;top:54.0%;width:5.2%;height:10.5%"></button>
+    <button class="hotspot" data-group="shoes" data-value="whiteBoot" data-name="white boots" style="left:92.5%;top:54.0%;width:4.7%;height:10.5%"></button>
+
+    <!-- Bags -->
+    <button class="hotspot" data-group="bag" data-value="brownBag" data-name="brown bag" style="left:63.1%;top:70.0%;width:6.5%;height:8.5%"></button>
+    <button class="hotspot" data-group="bag" data-value="blackBag" data-name="black bag" style="left:69.8%;top:70.0%;width:6.0%;height:8.5%"></button>
+    <button class="hotspot" data-group="bag" data-value="pinkBag" data-name="pink bag" style="left:76.1%;top:70.0%;width:6.1%;height:8.5%"></button>
+    <button class="hotspot" data-group="bag" data-value="whiteBag" data-name="white bag" style="left:82.4%;top:70.0%;width:6.1%;height:8.5%"></button>
+    <button class="hotspot" data-group="bag" data-value="darkBag" data-name="dark bag" style="left:88.7%;top:70.0%;width:6.3%;height:8.5%"></button>
+
+    <!-- Face/makeup buttons -->
+    <div class="face-controls">
+      <button data-face="smile" title="smile"></button>
+      <button data-face="wink" title="wink"></button>
+      <button data-face="kiss" title="kiss"></button>
+      <button data-face="blush" title="blush"></button>
+    </div>
+
+    <!-- Bottom action buttons -->
+    <button class="dress-action" id="randomBtn" title="Randomize"></button>
+    <button class="dress-action" id="resetBtn" title="Reset"></button>
+    <button class="dress-action" id="saveBtn" title="Save My Look"></button>
+
+    <div class="selection-status" id="status">click a wardrobe item ♡</div>
+  </div>
+</div>
+
+<script src="common.js"></script>
+<script>
+const state={
+  skin:'#dca77f', hair:'blonde', top:'none', bottom:'none', dress:'none',
+  outer:'none', shoes:'none', bag:'none', face:'smile'
+};
+
+const allHotspots=[...document.querySelectorAll('.hotspot')];
+const skinBtns=[...document.querySelectorAll('.skin-hotspot')];
+const faceBtns=[...document.querySelectorAll('[data-face]')];
+
+function hair(){
+  hairBackLayer.innerHTML=''; hairFrontLayer.innerHTML='';
+  const colors={blonde:'#e4b34d',brown:'#6b3826',purple:'#49234c',red:'#c72f2f',black:'#21171b'};
+  const c=colors[state.hair]||'#e4b34d';
+  if(state.hair==='black'){
+    hairBackLayer.innerHTML=`<path d="M191 90 Q196 30 250 38 Q312 33 314 104 L318 254 Q292 273 279 244 L284 116 Q267 64 248 70 Q224 64 209 117 L214 245 Q184 271 179 246Z" fill="${c}"/>`;
+    hairFrontLayer.innerHTML=`<path d="M198 92 Q216 51 250 60 Q283 52 303 91 Q281 77 269 79 Q249 65 224 81 Q211 77 198 92Z" fill="${c}"/>`;
+  }else{
+    hairBackLayer.innerHTML=`<path d="M191 92 Q194 31 250 38 Q312 32 314 104 L324 310 Q291 333 282 286 L284 117 Q268 64 248 69 Q223 64 208 118 L212 298 Q182 329 176 288Z" fill="${c}"/>`;
+    hairFrontLayer.innerHTML=`<path d="M197 93 Q215 52 250 60 Q283 52 304 92 Q283 76 269 79 Q249 65 224 81 Q211 77 197 93Z" fill="${c}"/>`;
+  }
+}
+
+function face(){
+  eyeLeft.setAttribute('d','M219 106 Q230 97 241 106');
+  eyeRight.setAttribute('d','M259 106 Q270 97 281 106');
+  mouthLine.setAttribute('d','M232 140 Q250 150 268 140');
+  mouthLine.setAttribute('stroke','#cc4f80');
+  shadowLayer.innerHTML='';
+  if(state.face==='wink') eyeLeft.setAttribute('d','M219 107 Q230 114 241 107');
+  if(state.face==='kiss') mouthLine.setAttribute('d','M241 140 Q250 132 259 140 Q250 149 241 140');
+  if(state.face==='blush') shadowLayer.innerHTML=`<ellipse cx="214" cy="131" rx="17" ry="8" fill="#f48db5" opacity=".6"/><ellipse cx="286" cy="131" rx="17" ry="8" fill="#f48db5" opacity=".6"/>`;
+}
+
+function clothes(){
+  topLayer.innerHTML=bottomLayer.innerHTML=dressLayer.innerHTML=outerLayer.innerHTML=shoeLayer.innerHTML=bagLayer.innerHTML='';
+
+  const tops={
+    stripe:`<path d="M199 207 Q250 186 301 207 L293 317 Q250 332 207 317Z" fill="#f7e9ec"/><g stroke="#33202b" stroke-width="7"><path d="M205 228 H295"/><path d="M205 252 H295"/><path d="M207 276 H293"/><path d="M209 300 H291"/></g>`,
+    pinkCorset:`<path d="M199 207 Q250 184 301 207 L293 318 Q250 332 207 318Z" fill="#ff86bd"/><path d="M214 214 L226 310 M286 214 L274 310" stroke="#b0206d" stroke-width="4"/>`,
+    redCardigan:`<path d="M190 208 Q250 179 310 208 L299 325 Q270 313 250 319 Q229 313 201 325Z" fill="#cf343c"/><path d="M250 202 V318" stroke="#8c1f2a" stroke-width="4"/>`,
+    whiteBlouse:`<path d="M193 208 Q250 181 307 208 L297 327 Q250 340 203 327Z" fill="#fffdf8"/><circle cx="250" cy="235" r="4" fill="#b48a99"/><circle cx="250" cy="255" r="4" fill="#b48a99"/>`,
+    yellowHalter:`<path d="M210 203 Q250 187 290 203 L292 310 Q250 325 208 310Z" fill="#ffd96a"/>`,
+    pinkBlack:`<path d="M205 204 Q250 185 295 204 L291 318 Q250 330 209 318Z" fill="#252029"/><path d="M215 214 Q250 192 285 214 L281 265 Q250 276 219 265Z" fill="#ed4c9d"/>`
+  };
+  if(tops[state.top])topLayer.innerHTML=tops[state.top];
+
+  const bottoms={
+    denimMini:`<path d="M205 369 Q250 390 295 369 L291 450 Q250 466 209 450Z" fill="#5279a4"/>`,
+    blackMini:`<path d="M205 369 Q250 390 295 369 L291 450 Q250 466 209 450Z" fill="#19151a"/>`,
+    pinkMini:`<path d="M205 369 Q250 390 295 369 L291 450 Q250 466 209 450Z" fill="#f29bc4"/>`,
+    wideJeans:`<path d="M205 371 L246 381 L238 716 L193 716 L207 449 M254 381 L295 371 L307 716 L262 716 L285 449" fill="#304c79"/>`,
+    cargo:`<path d="M205 371 L246 381 L238 716 L193 716 L207 449 M254 381 L295 371 L307 716 L262 716 L285 449" fill="#766f5e"/><rect x="191" y="490" width="45" height="58" fill="#5a5548"/><rect x="264" y="490" width="45" height="58" fill="#5a5548"/>`,
+    sparklePants:`<path d="M205 371 L246 381 L238 716 L193 716 L207 449 M254 381 L295 371 L307 716 L262 716 L285 449" fill="#5a4a58"/><g fill="#fff"><circle cx="220" cy="450" r="3"/><circle cx="276" cy="525" r="3"/><circle cx="224" cy="610" r="3"/><circle cx="285" cy="665" r="3"/></g>`
+  };
+  if(bottoms[state.bottom])bottomLayer.innerHTML=bottoms[state.bottom];
+
+  const dresses={
+    blackDress:`<path d="M195 204 Q250 181 305 204 L296 315 L322 503 Q250 527 178 503 L204 315Z" fill="#171218"/><g fill="#fff"><circle cx="229" cy="248" r="3"/><circle cx="276" cy="338" r="3"/><circle cx="246" cy="440" r="3"/></g>`,
+    pinkDress:`<path d="M195 204 Q250 181 305 204 L296 315 L322 503 Q250 527 178 503 L204 315Z" fill="#ef83c4"/>`,
+    redDress:`<path d="M195 204 Q250 181 305 204 L296 315 L322 503 Q250 527 178 503 L204 315Z" fill="#d83a3e"/>`,
+    floralDress:`<path d="M195 204 Q250 181 305 204 L296 315 L322 503 Q250 527 178 503 L204 315Z" fill="#fff1f7"/><g fill="#e7529b"><circle cx="225" cy="245" r="6"/><circle cx="275" cy="302" r="6"/><circle cx="236" cy="420" r="6"/></g>`,
+    creamDress:`<path d="M195 204 Q250 181 305 204 L296 315 L322 503 Q250 527 178 503 L204 315Z" fill="#f7e1b5"/><g fill="#bf8647"><circle cx="228" cy="255" r="4"/><circle cx="274" cy="360" r="4"/></g>`,
+    blackPinkDress:`<path d="M195 204 Q250 181 305 204 L296 315 L322 503 Q250 527 178 503 L204 315Z" fill="#171218"/><path d="M207 208 Q250 188 293 208 L290 274 Q250 287 210 274Z" fill="#ee65a8"/>`
+  };
+  if(dresses[state.dress])dressLayer.innerHTML=dresses[state.dress];
+
+  const outers={
+    brownJacket:`<path d="M187 207 Q250 178 313 207 L306 341 L284 326 L278 222 L250 237 L222 222 L216 326 L194 341Z" fill="#6a3f29"/>`,
+    blackJacket:`<path d="M187 207 Q250 178 313 207 L306 341 L284 326 L278 222 L250 237 L222 222 L216 326 L194 341Z" fill="#171518"/>`,
+    pinkFur:`<path d="M184 207 Q250 176 316 207 L307 326 Q286 345 275 315 L275 226 L250 240 L225 226 L225 315 Q214 345 193 326Z" fill="#f5a3cc"/>`,
+    denimJacket:`<path d="M187 207 Q250 178 313 207 L306 341 L284 326 L278 222 L250 237 L222 222 L216 326 L194 341Z" fill="#5279a4"/>`,
+    leopardJacket:`<path d="M187 207 Q250 178 313 207 L306 341 L284 326 L278 222 L250 237 L222 222 L216 326 L194 341Z" fill="url(#cheetahPattern)"/>`
+  };
+  if(outers[state.outer])outerLayer.innerHTML=outers[state.outer];
+
+  const shoes={
+    blackBoot:`<path d="M193 650 L239 650 L239 742 L193 742Z M261 650 L307 650 L307 742 L261 742Z" fill="#151217"/>`,
+    pinkSneaker:`<path d="M187 706 Q216 725 240 707 L244 741 L187 741Z M257 707 Q281 725 312 709 L317 742 L256 742Z" fill="#ff70ac" stroke="#fff" stroke-width="3"/>`,
+    blackSneaker:`<path d="M187 706 Q216 725 240 707 L244 741 L187 741Z M257 707 Q281 725 312 709 L317 742 L256 742Z" fill="#171217" stroke="#fff" stroke-width="3"/>`,
+    pinkHeel:`<path d="M192 706 Q216 721 239 707 L237 741 L193 741Z M262 707 Q281 721 307 708 L309 742 L261 742Z" fill="#ee75ae"/>`,
+    leopardBoot:`<path d="M193 650 L239 650 L239 742 L193 742Z M261 650 L307 650 L307 742 L261 742Z" fill="url(#cheetahPattern)"/>`,
+    whiteBoot:`<path d="M193 650 L239 650 L239 742 L193 742Z M261 650 L307 650 L307 742 L261 742Z" fill="#fff"/>`
+  };
+  if(shoes[state.shoes])shoeLayer.innerHTML=shoes[state.shoes];
+
+  const bags={
+    brownBag:`<path d="M329 284 Q362 260 396 284 L388 343 L337 343Z" fill="#795038"/><path d="M344 283 Q363 245 384 283" fill="none" stroke="#4b321f" stroke-width="5"/>`,
+    blackBag:`<path d="M329 284 Q362 260 396 284 L388 343 L337 343Z" fill="#171217"/><path d="M344 283 Q363 245 384 283" fill="none" stroke="#4b321f" stroke-width="5"/>`,
+    pinkBag:`<rect x="333" y="279" width="61" height="57" rx="8" fill="#ff78b8"/><path d="M344 279 Q363 245 383 279" fill="none" stroke="#aa336e" stroke-width="5"/>`,
+    whiteBag:`<rect x="333" y="279" width="61" height="57" rx="8" fill="#fffdf8"/><path d="M344 279 Q363 245 383 279" fill="none" stroke="#b09a81" stroke-width="5"/>`,
+    darkBag:`<path d="M329 284 Q362 260 396 284 L388 343 L337 343Z" fill="#4a281f"/><path d="M344 283 Q363 245 384 283" fill="none" stroke="#2a1612" stroke-width="5"/>`
+  };
+  if(bags[state.bag])bagLayer.innerHTML=bags[state.bag];
+}
+
+function apply(){
+  skinLayer.setAttribute('fill',state.skin);
+  hair();face();clothes();
+  allHotspots.forEach(b=>b.classList.toggle('selected',state[b.dataset.group]===b.dataset.value));
+  skinBtns.forEach(b=>b.classList.toggle('selected',state.skin===b.dataset.skin));
+  faceBtns.forEach(b=>b.classList.toggle('selected',state.face===b.dataset.face));
+}
+
+allHotspots.forEach(b=>b.addEventListener('click',()=>{
+  const g=b.dataset.group,v=b.dataset.value;
+  state[g]=v;
+  if(g==='dress'){state.top='none';state.bottom='none'}
+  if(g==='top'||g==='bottom')state.dress='none';
+  status.textContent=`selected: ${b.dataset.name} ♡`;
+  apply();
+  if(window.tone)tone(930,.06);
+}));
+
+skinBtns.forEach(b=>b.addEventListener('click',()=>{
+  state.skin=b.dataset.skin;status.textContent='skin tone updated ♡';apply();
+}));
+
+faceBtns.forEach(b=>b.addEventListener('click',()=>{
+  state.face=b.dataset.face;status.textContent=`face: ${b.title} ♡`;apply();
+}));
+
+randomBtn.onclick=()=>{
+  const groups=['hair','top','bottom','outer','shoes','bag'];
+  groups.forEach(g=>{
+    const opts=allHotspots.filter(b=>b.dataset.group===g);
+    if(opts.length)state[g]=opts[Math.floor(Math.random()*opts.length)].dataset.value;
+  });
+  state.dress='none';
+  state.skin=skinBtns[Math.floor(Math.random()*skinBtns.length)].dataset.skin;
+  state.face=faceBtns[Math.floor(Math.random()*faceBtns.length)].dataset.face;
+  status.textContent='randomized your look ✦';
+  apply();
+};
+
+resetBtn.onclick=()=>{
+  Object.assign(state,{skin:'#dca77f',hair:'blonde',top:'none',bottom:'none',dress:'none',outer:'none',shoes:'none',bag:'none',face:'smile'});
+  status.textContent='reset ♡';
+  apply();
+};
+
+saveBtn.onclick=()=>{
+  const svg=new XMLSerializer().serializeToString(liveDoll);
+  const img=new Image();
+  img.onload=()=>{
+    const c=document.createElement('canvas');c.width=1000;c.height=1640;
+    const x=c.getContext('2d');x.fillStyle='#ffd8ea';x.fillRect(0,0,c.width,c.height);
+    x.drawImage(img,0,0,c.width,c.height);
+    const a=document.createElement('a');a.download='thesweetcherry-look.png';a.href=c.toDataURL();a.click();
+  };
+  img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+};
+
+apply();
+</script>
+</body>
+</html>
